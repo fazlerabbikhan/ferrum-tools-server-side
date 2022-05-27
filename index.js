@@ -32,6 +32,20 @@ async function run() {
             res.send(tool);
         });
 
+        app.get('/orders', async (req, res) => {
+            const query = {};
+            const cursor = ordersCollection.find(query);
+            const orders = await cursor.toArray();
+            res.send(orders);
+        })
+
+        app.get('/customerorders', async (req, res) => {
+            const customerEmail = req.query.customerEmail;
+            const query = { customerEmail: customerEmail };
+            const customerOrders = await ordersCollection.find(query).toArray();
+            res.send(customerOrders);
+        })
+
         //POST ORDER
         app.post('/orders', async (req, res) => {
             const newOrder = req.body;
