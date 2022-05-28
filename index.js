@@ -18,6 +18,7 @@ async function run() {
         const toolsCollection = client.db('ferrumTools').collection('tools');
         const ordersCollection = client.db('ferrumTools').collection('orders');
 
+        // GET ALL TOOLS
         app.get('/tools', async (req, res) => {
             const query = {};
             const cursor = toolsCollection.find(query);
@@ -25,6 +26,7 @@ async function run() {
             res.send(tools);
         })
 
+        // GET SPECIFIC TOOL
         app.get('/tools/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
@@ -32,6 +34,7 @@ async function run() {
             res.send(tool);
         });
 
+        // GET ALL CUSTOMER ORDERS
         app.get('/orders', async (req, res) => {
             const query = {};
             const cursor = ordersCollection.find(query);
@@ -39,6 +42,7 @@ async function run() {
             res.send(orders);
         })
 
+        // GET SPECIFIC CUSTOMER ORDERS
         app.get('/customerorders', async (req, res) => {
             const customerEmail = req.query.customerEmail;
             const query = { customerEmail: customerEmail };
