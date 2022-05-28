@@ -34,7 +34,7 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const tool = await toolsCollection.findOne(query);
             res.send(tool);
-        });
+        })
 
         // GET ALL CUSTOMER ORDERS
         app.get('/orders', async (req, res) => {
@@ -57,7 +57,7 @@ async function run() {
             const newOrder = req.body;
             const result = await ordersCollection.insertOne(newOrder);
             res.send(result);
-        });
+        })
 
         // GET ALL USERS
         app.get('/users', async (req, res) => {
