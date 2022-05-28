@@ -87,6 +87,7 @@ async function run() {
             res.send(users);
         });
 
+        // MANAGE ADMIN
         app.put('/users/admin/:email', verifyJWT, async (req, res) => {
             const email = req.params.email;
             const requester = req.decoded.email;
